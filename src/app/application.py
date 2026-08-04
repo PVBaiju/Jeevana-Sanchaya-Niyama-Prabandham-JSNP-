@@ -4,7 +4,7 @@ Project        : Sanchayam
 Project Code   : JSNP
 File           : application.py
 Description    : Application Bootstrap
-Author         : Baiju Nair
+Author         : Baiju P V Nair
 ===============================================================================
 """
 
