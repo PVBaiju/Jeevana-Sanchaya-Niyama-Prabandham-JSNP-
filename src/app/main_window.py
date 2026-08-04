@@ -1,75 +1,121 @@
 """
-=========================================================
-Main Window
-=========================================================
+===============================================================================
+Project        : Sanchayam
+Project Code   : JSNP
+File           : main_window.py
+Description    : Main Desktop Window
+===============================================================================
 """
 
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QLabel,
+    QListWidget,
     QMainWindow,
+    QSplitter,
+    QStatusBar,
+    QToolBar,
     QVBoxLayout,
     QWidget,
-)
-
-from core.constants import (
-    APP_NAME,
-    PROJECT_CODE,
-    VERSION,
-    WINDOW_HEIGHT,
-    WINDOW_WIDTH,
 )
 
 
 class MainWindow(QMainWindow):
     """
-    Main Application Window
+    Main application window.
     """
 
     def __init__(self):
         super().__init__()
 
-        self.initialize_window()
+        self.setWindowTitle("Sanchayam - Personal Life Management System")
+        self.resize(1400, 850)
 
-    def initialize_window(self):
+        self.create_menu()
+        self.create_toolbar()
+        self.create_central_widget()
+        self.create_statusbar()
 
-        self.setWindowTitle(APP_NAME)
+    # ------------------------------------------------------------------
 
-        self.resize(
-            WINDOW_WIDTH,
-            WINDOW_HEIGHT,
+    def create_menu(self):
+
+        menu_bar = self.menuBar()
+
+        menu_bar.addMenu("File")
+        menu_bar.addMenu("Finance")
+        menu_bar.addMenu("Planner")
+        menu_bar.addMenu("Reports")
+        menu_bar.addMenu("Tools")
+        menu_bar.addMenu("Help")
+
+    # ------------------------------------------------------------------
+
+    def create_toolbar(self):
+
+        toolbar = QToolBar("Main Toolbar")
+
+        self.addToolBar(toolbar)
+
+    # ------------------------------------------------------------------
+
+    def create_central_widget(self):
+
+        splitter = QSplitter(Qt.Horizontal)
+
+        navigation = QListWidget()
+
+        navigation.addItems(
+            [
+                "🏠 Dashboard",
+                "💰 Expenses",
+                "💵 Income",
+                "📅 Calendar",
+                "📝 Journal",
+                "📂 Documents",
+                "🌾 Farm",
+                "❤️ Health",
+                "📊 Reports",
+                "⚙ Settings",
+            ]
         )
 
-        central_widget = QWidget()
+        navigation.setMaximumWidth(250)
 
-        layout = QVBoxLayout()
+        center = QWidget()
 
-        title = QLabel(f"🌿 {APP_NAME}")
+        layout = QVBoxLayout(center)
 
-        title.setStyleSheet("""
-            font-size:32px;
+        title = QLabel("Welcome to Sanchayam")
+
+        title.setStyleSheet(
+            """
+            font-size:24px;
             font-weight:bold;
-            padding:20px;
-        """)
+            """
+        )
 
         subtitle = QLabel(
-            f"""
-Personal Life Management System
-
-Project Code : {PROJECT_CODE}
-
-Version : {VERSION}
-"""
+            "Personal Life Management System\nVersion 0.1.0"
         )
 
-        subtitle.setStyleSheet("""
-            font-size:18px;
-            padding-left:20px;
-        """)
-
         layout.addWidget(title)
-
         layout.addWidget(subtitle)
+        layout.addStretch()
 
-        central_widget.setLayout(layout)
+        splitter.addWidget(navigation)
+        splitter.addWidget(center)
 
-        self.setCentralWidget(central_widget)
+        splitter.setStretchFactor(1, 1)
+
+        self.setCentralWidget(splitter)
+
+    # ------------------------------------------------------------------
+
+    def create_statusbar(self):
+
+        status = QStatusBar()
+
+        status.showMessage("Ready")
+
+        self.setStatusBar(status)
