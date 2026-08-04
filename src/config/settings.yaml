@@ -1,0 +1,36 @@
+# ==============================================================================
+# Sanchayam Configuration
+# ==============================================================================
+
+application:
+  name: Sanchayam
+  code: JSNP
+  version: 0.1.0
+  environment: development
+
+database:
+  type: sqlite
+  filename: sanchayam.db
+
+logging:
+  level: INFO
+  file: sanchayam.log
+
+ui:
+  theme: Light
+  language: English
+  font: Segoe UI
+  font_size: 10
+
+backup:
+  enabled: true
+  interval_days: 7
+
+notifications:
+  enabled: true
+
+future:
+  ai: false
+  cloud_sync: false
+  multi_user: false
+  farm_module: false

@@ -1,35 +1,26 @@
 """
 ===============================================================================
-Sanchayam
-Entry Point
+Project        : Sanchayam
+Project Code   : JSNP
+File           : main.py
+Description    : Application Entry Point
 ===============================================================================
 """
 
-from core.paths import PathManager
+import sys
+
+from app.application import SanchayamApplication
 
 
-def main() -> None:
+def main() -> int:
     """
-    Application Entry Point
+    Application Entry Point.
     """
 
-    paths = PathManager()
+    application = SanchayamApplication()
 
-    print("=========================================")
-    print("Sanchayam")
-    print("Personal Life Management System")
-    print("=========================================")
-    print()
-
-    print("Application Root :", paths.application_root)
-    print("Database Folder  :", paths.database_path)
-    print("Logs Folder      :", paths.log_path)
-    print("Exports Folder   :", paths.export_path)
-    print("Backup Folder    :", paths.backup_path)
-
-    print()
-    print("Initialization Successful")
+    return application.run()
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
