@@ -1,6 +1,9 @@
 """
 ===============================================================================
-Expense Model
+Project        : Sanchayam
+Project Code   : JSNP
+File           : expense.py
+Description    : Expense Model
 ===============================================================================
 """
 
@@ -33,10 +36,12 @@ class Expense(BaseEntity):
 
     category_id: Mapped[int] = mapped_column(
         ForeignKey("expense_categories.id"),
+        nullable=False,
     )
 
-    payment_method: Mapped[str] = mapped_column(
-        String(50),
+    payment_method_id: Mapped[int] = mapped_column(
+        ForeignKey("master_payment_methods.id"),
+        nullable=False,
     )
 
     vendor: Mapped[str] = mapped_column(
@@ -65,3 +70,5 @@ class Expense(BaseEntity):
     )
 
     category = relationship("ExpenseCategory")
+
+    payment_method = relationship("PaymentMethod")

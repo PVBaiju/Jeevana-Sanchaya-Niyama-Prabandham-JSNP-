@@ -20,6 +20,7 @@ from core.paths import PathManager
 # ========================= Database =========================
 from database.base import Base
 from database.database import engine
+from database.seed import DatabaseSeeder
 # ============================================================
 
 
@@ -65,7 +66,9 @@ class SanchayamApplication:
 
         self.logger.info("Database Initialized Successfully")
 
-        self.logger.info("Application Initialization Completed")
+        DatabaseSeeder.seed()
+
+        self.logger.info("Master Data Seeded Successfully")
 
     # =========================================================
 

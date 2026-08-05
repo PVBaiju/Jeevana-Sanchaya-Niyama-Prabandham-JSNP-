@@ -2,10 +2,7 @@
 ===============================================================================
 Project        : Sanchayam
 Project Code   : JSNP
-Description    : Model Registration (src/models/__init__.py)
+Description    : Model Registration (src/models/master/__init__.py)
 ===============================================================================
 """
-
-from .expense import Expense
-from .expense_category import ExpenseCategory
-from .master.payment_method import PaymentMethod
+from .payment_method import PaymentMethod
